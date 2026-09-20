@@ -108,6 +108,20 @@
     background: var(--primary-hover);
   }
 
+  .secondary {
+    background: #e5e7eb;
+    color: #111827;
+    margin-top: 10px;
+  }
+
+  .secondary:hover {
+    background: #d1d5db;
+  }
+
+  .hidden {
+    display: none;
+  }
+
   .msg {
     text-align: center;
     font-size: 0.85rem;
@@ -119,26 +133,76 @@
 </head>
 <body>
   <div class="card">
-    <h1>Entrar</h1>
-    <form id="loginForm">
-      <label for="user">Usuário</label>
-      <input type="text" id="user" name="user" autocomplete="username" required>
+    <div id="loginBox">
+      <h1>Entrar</h1>
+      <form id="loginForm">
+        <label for="user">Usuário</label>
+        <input type="text" id="user" name="user" autocomplete="username" required>
 
-      <label for="pass">Senha</label>
-      <input type="password" id="pass" name="pass" autocomplete="current-password" required>
+        <label for="pass">Senha</label>
+        <input type="password" id="pass" name="pass" autocomplete="current-password" required>
 
-      <button type="submit">Entrar</button>
-      <div class="msg" id="msg"></div>
-    </form>
+        <button type="submit">Entrar</button>
+        <button type="button" class="secondary" id="btnNovoCadastro">Novo cadastro</button>
+      </form>
+    </div>
+
+    <div id="cadastroBox" class="hidden">
+      <h1>Novo cadastro</h1>
+      <form id="cadastroForm">
+        <label for="novoNome">Nome</label>
+        <input type="text" id="novoNome" name="novoNome" required>
+
+        <label for="novoUsuario">Usuário</label>
+        <input type="text" id="novoUsuario" name="novoUsuario" required>
+
+        <label for="novaSenha">Senha</label>
+        <input type="password" id="novaSenha" name="novaSenha" required>
+
+        <button type="submit">Cadastrar</button>
+        <button type="button" class="secondary" id="btnVoltarLogin">Voltar</button>
+      </form>
+    </div>
+
+    <div class="msg" id="msg"></div>
   </div>
 
   <script>
+    const loginBox = document.getElementById('loginBox');
+    const cadastroBox = document.getElementById('cadastroBox');
+    const btnNovoCadastro = document.getElementById('btnNovoCadastro');
+    const btnVoltarLogin = document.getElementById('btnVoltarLogin');
+    const msg = document.getElementById('msg');
+
+    btnNovoCadastro.addEventListener('click', function () {
+      loginBox.classList.add('hidden');
+      cadastroBox.classList.remove('hidden');
+      msg.textContent = '';
+    });
+
+    btnVoltarLogin.addEventListener('click', function () {
+      cadastroBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+      msg.textContent = '';
+    });
+
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var user = document.getElementById('user').value.trim();
-      document.getElementById('msg').textContent = user
+      const user = document.getElementById('user').value.trim();
+
+      msg.textContent = user
         ? 'Formulário enviado (exemplo estático — sem backend).'
         : 'Preencha usuário e senha.';
+    });
+
+    document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nome = document.getElementById('novoNome').value.trim();
+      const usuario = document.getElementById('novoUsuario').value.trim();
+
+      msg.textContent = nome && usuario
+        ? 'Cadastro realizado com sucesso (exemplo estático — sem backend).'
+        : 'Preencha todos os campos.';
     });
   </script>
 </body>
