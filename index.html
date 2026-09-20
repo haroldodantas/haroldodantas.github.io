@@ -6,16 +6,17 @@
   <title>HDM - Login</title>
   <style>
     :root {
-      --bg-1: #eef4ff;
-      --bg-2: #dfeaff;
-      --card-bg: rgba(255, 255, 255, 0.9);
+      --bg-1: #eaf5e8;
+      --bg-2: #bfdcc0;
+      --bg-3: #7ca97a;
+      --card-bg: rgba(255, 255, 255, 0.78);
       --text: #0f172a;
       --muted: #475569;
-      --border: rgba(148, 163, 184, 0.3);
+      --border: rgba(35, 64, 43, 0.15);
       --primary: #1d4ed8;
       --primary-strong: #163bb5;
       --secondary: #e2e8f0;
-      --shadow: rgba(15, 23, 42, 0.12);
+      --shadow: rgba(15, 23, 42, 0.16);
       --success: #15803d;
       --warning: #b45309;
     }
@@ -26,18 +27,54 @@
       height: 100%;
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 35%, var(--bg-3) 100%);
       color: var(--text);
+      overflow: hidden;
     }
 
     body {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 28px 20px;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.6) 0, rgba(255,255,255,0) 18%),
+        radial-gradient(circle at 70% 10%, rgba(255,255,255,0.45) 0, rgba(255,255,255,0) 20%),
+        linear-gradient(to top, rgba(10, 36, 20, 0.35), rgba(10, 36, 20, 0));
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 35vh;
+      background:
+        linear-gradient(to top, rgba(10, 31, 18, 0.88), rgba(10, 31, 18, 0.12)),
+        repeating-linear-gradient(
+          90deg,
+          rgba(22, 70, 38, 0.8) 0 30px,
+          rgba(18, 58, 33, 0.88) 30px 60px,
+          rgba(15, 47, 30, 0.9) 60px 90px
+        );
+      clip-path: polygon(0 100%, 0 42%, 8% 50%, 14% 35%, 22% 52%, 30% 30%, 36% 55%, 43% 38%, 50% 48%, 58% 28%, 66% 52%, 74% 36%, 82% 58%, 90% 32%, 100% 52%, 100% 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .app-shell {
+      position: relative;
+      z-index: 1;
       width: min(100%, 420px);
       display: flex;
       flex-direction: column;
@@ -53,7 +90,7 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.42);
       border: 1px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 10px 22px rgba(29, 78, 216, 0.08);
+      box-shadow: 0 12px 25px rgba(13, 51, 26, 0.12);
       backdrop-filter: blur(8px);
     }
 
@@ -62,7 +99,7 @@
       height: 60px;
       border-radius: 18px;
       display: block;
-      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.22);
+      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
       background: linear-gradient(135deg, #1d4ed8, #60a5fa);
     }
 
