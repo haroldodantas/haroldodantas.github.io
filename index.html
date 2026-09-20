@@ -1,190 +1,252 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Login</title>
-<style>
-  :root {
-    --bg: #f4f5f7;
-    --card-bg: #ffffff;
-    --text: #1a1a1a;
-    --muted: #6b7280;
-    --border: #d1d5db;
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #111827;
-      --card-bg: #1f2937;
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --border: #374151;
-      --primary: #3b82f6;
-      --primary-hover: #60a5fa;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>HDM - Login</title>
+  <style>
+    :root {
+      --bg-1: #eef4ff;
+      --bg-2: #dfeaff;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: rgba(148, 163, 184, 0.3);
+      --primary: #1d4ed8;
+      --primary-strong: #163bb5;
+      --secondary: #e2e8f0;
+      --shadow: rgba(15, 23, 42, 0.12);
+      --success: #15803d;
+      --warning: #b45309;
     }
-  }
 
-  :root[data-theme="dark"] {
-    --bg: #111827;
-    --card-bg: #1f2937;
-    --text: #f3f4f6;
-    --muted: #9ca3af;
-    --border: #374151;
-    --primary: #3b82f6;
-    --primary-hover: #60a5fa;
-  }
+    * { box-sizing: border-box; }
 
-  * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+    }
 
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    gap: 14px;
-  }
+    .app-shell {
+      width: min(100%, 420px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
 
-  .logo {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
-  }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 10px 22px rgba(29, 78, 216, 0.08);
+      backdrop-filter: blur(8px);
+    }
 
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 32px;
-    width: 100%;
-    max-width: 360px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  }
+    .brand-mark {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: block;
+      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.22);
+      background: linear-gradient(135deg, #1d4ed8, #60a5fa);
+    }
 
-  h1 {
-    font-size: 1.4rem;
-    margin: 0 0 24px;
-    text-align: center;
-  }
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
 
-  label {
-    display: block;
-    font-size: 0.85rem;
-    margin-bottom: 6px;
-    color: var(--muted);
-  }
+    .brand-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #0f172a;
+    }
 
-  input {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 18px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-    background: transparent;
-    color: var(--text);
-  }
+    .brand-subtitle {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-  input:focus {
-    outline: none;
-    border-color: var(--primary);
-  }
+    .card {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px 22px 22px;
+      box-shadow: 0 20px 40px var(--shadow);
+      backdrop-filter: blur(6px);
+    }
 
-  button {
-    width: 100%;
-    padding: 11px;
-    border: none;
-    border-radius: 8px;
-    background: var(--primary);
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.15s ease;
-  }
+    h1 {
+      margin: 0 0 18px;
+      font-size: 1.7rem;
+      text-align: center;
+      color: var(--text);
+    }
 
-  button:hover {
-    background: var(--primary-hover);
-  }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-  .secondary {
-    background: #e5e7eb;
-    color: #111827;
-    margin-top: 10px;
-  }
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
 
-  .secondary:hover {
-    background: #d1d5db;
-  }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-  .hidden {
-    display: none;
-  }
+    input:focus {
+      outline: none;
+      border-color: rgba(29, 78, 216, 0.7);
+      box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12);
+    }
 
-  .msg {
-    text-align: center;
-    font-size: 0.85rem;
-    margin-top: 14px;
-    color: var(--muted);
-    min-height: 1.2em;
-  }
-</style>
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      color: white;
+      box-shadow: 0 12px 20px rgba(29, 78, 216, 0.2);
+    }
+
+    .secondary-btn {
+      background: var(--secondary);
+      color: var(--text);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .msg {
+      min-height: 20px;
+      margin-top: 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .success {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .warning {
+      color: var(--warning);
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
-  <div class="logo">HDM</div>
+  <div class="app-shell">
+    <div class="brand" aria-label="Logo da HDM">
+      <svg class="brand-mark" viewBox="0 0 120 120" role="img" aria-label="Logo HDM">
+        <defs>
+          <linearGradient id="hdmGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1d4ed8" />
+            <stop offset="100%" stop-color="#60a5fa" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="120" height="120" rx="32" fill="url(#hdmGradient)" />
+        <path d="M28 82 L58 30 L88 82" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M40 70 L62 43 L84 70" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="60" cy="60" r="42" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+      </svg>
 
-  <div class="card">
-    <div id="loginBox">
-      <h1>Entrar</h1>
-      <form id="loginForm">
-        <label for="user">Usuário</label>
-        <input type="text" id="user" name="user" autocomplete="username" required>
-
-        <label for="pass">Senha</label>
-        <input type="password" id="pass" name="pass" autocomplete="current-password" required>
-
-        <button type="submit">Entrar</button>
-        <button type="button" class="secondary" id="btnNovoCadastro">Novo cadastro</button>
-      </form>
+      <div class="brand-copy">
+        <span class="brand-name">HDM</span>
+        <span class="brand-subtitle">Sistema</span>
+      </div>
     </div>
 
-    <div id="cadastroBox" class="hidden">
-      <h1>Novo cadastro</h1>
-      <form id="cadastroForm">
-        <label for="novoNome">Nome</label>
-        <input type="text" id="novoNome" name="novoNome" required>
+    <div class="card">
+      <div id="loginBox">
+        <h1>Entrar</h1>
+        <form id="loginForm">
+          <div>
+            <label for="user">Usuário</label>
+            <input type="text" id="user" name="user" autocomplete="username" required />
+          </div>
 
-        <label for="novoUsuario">Usuário</label>
-        <input type="text" id="novoUsuario" name="novoUsuario" required>
+          <div>
+            <label for="pass">Senha</label>
+            <input type="password" id="pass" name="pass" autocomplete="current-password" required />
+          </div>
 
-        <label for="novaSenha">Senha</label>
-        <input type="password" id="novaSenha" name="novaSenha" required>
+          <button type="submit" class="primary-btn">Entrar</button>
+          <button type="button" class="secondary-btn" id="btnNovoCadastro">Novo cadastro</button>
+        </form>
+      </div>
 
-        <button type="submit">Cadastrar</button>
-        <button type="button" class="secondary" id="btnVoltarLogin">Voltar</button>
-      </form>
+      <div id="cadastroBox" class="hidden">
+        <h1>Novo cadastro</h1>
+        <form id="cadastroForm">
+          <div>
+            <label for="novoNome">Nome</label>
+            <input type="text" id="novoNome" name="novoNome" required />
+          </div>
+
+          <div>
+            <label for="novoUsuario">Usuário</label>
+            <input type="text" id="novoUsuario" name="novoUsuario" required />
+          </div>
+
+          <div>
+            <label for="novaSenha">Senha</label>
+            <input type="password" id="novaSenha" name="novaSenha" required />
+          </div>
+
+          <button type="submit" class="primary-btn">Cadastrar</button>
+          <button type="button" class="secondary-btn" id="btnVoltarLogin">Voltar</button>
+        </form>
+      </div>
+
+      <div class="msg" id="msg"></div>
     </div>
-
-    <div class="msg" id="msg"></div>
   </div>
 
   <script>
@@ -194,25 +256,33 @@
     const btnVoltarLogin = document.getElementById('btnVoltarLogin');
     const msg = document.getElementById('msg');
 
+    function showMessage(text, type) {
+      msg.textContent = text;
+      msg.classList.remove('success', 'warning');
+      if (type) msg.classList.add(type);
+    }
+
     btnNovoCadastro.addEventListener('click', function () {
       loginBox.classList.add('hidden');
       cadastroBox.classList.remove('hidden');
-      msg.textContent = '';
+      showMessage('', '');
     });
 
     btnVoltarLogin.addEventListener('click', function () {
       cadastroBox.classList.add('hidden');
       loginBox.classList.remove('hidden');
-      msg.textContent = '';
+      showMessage('', '');
     });
 
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const user = document.getElementById('user').value.trim();
 
-      msg.textContent = user
-        ? 'Formulário enviado (exemplo estático — sem backend).'
-        : 'Preencha usuário e senha.';
+      if (user) {
+        showMessage('Formulário enviado com sucesso (exemplo estático).', 'success');
+      } else {
+        showMessage('Preencha usuário e senha.', 'warning');
+      }
     });
 
     document.getElementById('cadastroForm').addEventListener('submit', function (e) {
@@ -220,9 +290,11 @@
       const nome = document.getElementById('novoNome').value.trim();
       const usuario = document.getElementById('novoUsuario').value.trim();
 
-      msg.textContent = nome && usuario
-        ? 'Cadastro realizado com sucesso (exemplo estático — sem backend).'
-        : 'Preencha todos os campos.';
+      if (nome && usuario) {
+        showMessage('Cadastro concluído com sucesso (exemplo estático).', 'success');
+      } else {
+        showMessage('Preencha todos os campos.', 'warning');
+      }
     });
   </script>
 </body>
